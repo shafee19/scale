@@ -1,0 +1,21 @@
+R1(config)#ip nat i
+R1(config)#ip nat inside s
+R1(config)#ip nat inside source s
+R1(config)#ip nat inside source static 172.16.1.1 100.0.0.1
+R1(config)#acc
+R1(config)#access-list 1 permit 172.16.2.0 0.0.0.255
+R1(config)#ip nat pool POOL 200.0.0.1 200.0.0.10 netmask 255.255.255.0
+R1(config)#ip nat i
+R1(config)#ip nat inside s
+R1(config)#ip nat inside source l
+R1(config)#ip nat inside source list 1 pool POOL
+
+
+R1(config)#ip access-list standard to_
+R1(config-std-nacl)#
+R1(config-std-nacl)#ex
+
+R1(config)#ip access-list ex
+R1(config)#ip access-list extended 100
+R1(config-ext-nacl)#deny ip any any
+R1#
